@@ -1,4 +1,7 @@
 # git ignore
 
 build/
+.settings/
 *.class
+*.classpath
+*.project
