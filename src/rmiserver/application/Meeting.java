@@ -1,4 +1,4 @@
-package application;
+package rmiserver.application;
 
 import java.io.Serializable;
 

@@ -1,7 +1,9 @@
+package login.action;
+
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
 import java.util.Map;
-//import hey.model.HeyBean;
+import login.model.LoginBean;
 
 public class LoginAction extends ActionSupport implements SessionAware {
 	private static final long serialVersionUID = 4L;
@@ -10,14 +12,18 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 	@Override
 	public String execute() {
-		if(this.username != null && !username.equal("") && password != null && !password.equals("")) {
-			this.getLoginBean.setUsername(this.username);
-			this.getLoginBean.setPassword(this.password);
-			String result = this.getLoginBean.verifyLogin();
-			if(result != null && !result.equals(""))
+		if(this.username != null && !username.equals("") && password != null && !password.equals("")) {
+			this.getLoginBean().setUsername(this.username);
+			this.getLoginBean().setPassword(this.password);
+			String result = this.getLoginBean().verifyLogin();
+			
+			if(result != null && !result.equals("")){
+				session.put("username", username);
+				session.put("loggedin", true);
 				return SUCCESS;
-			else
-				return WRONG;
+			}else
+				return "WRONG";
+		}
 		else
 			return LOGIN;
 	}
@@ -33,6 +39,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	public LoginBean getLoginBean() {
 		if(!session.containsKey("loginBean"))
 			this.setLoginBean(new LoginBean());
+		
 		return (LoginBean) session.get("loginBean");
 	}
 

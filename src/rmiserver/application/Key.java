@@ -1,17 +1,14 @@
-package application;
+package rmiserver.application;
 
 import java.io.Serializable;
 
-public class Item implements Serializable{
+public class Key implements Serializable{
 	private static final long serialVersionUID = 1L;
-	
 	private String id;
-	private String title;
 	private String desc;
  
-    public Item(String id, String title, String desc){
-    	this.id = id;
-    	this.title = title;
+    public Key(String id, String desc){
+    	this.id   = id;
     	this.desc = desc;
     }
     
@@ -22,14 +19,6 @@ public class Item implements Serializable{
     public void setId(String id){
     	this.id = id;
     }
-    
-    public String getTitle() {
-    	return title;
-    }
-    
-    public void setTitle(String title){
-    	this.title = title;
-    } 
     
     public String getDesc() {
     	return desc;
