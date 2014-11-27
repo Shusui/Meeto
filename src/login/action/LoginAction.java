@@ -13,17 +13,19 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	@Override
 	public String execute() {
 		session.put("loggedin", false);
-		session.put("failUser", false);
-		session.put("failPw", false);
+		session.put("noUser", false);
+		session.put("noPw", false);
+		session.put("noCreds", false);
+		if(this.username.equals("") && this.username.equals("")) {
+			session.put("noCreds", true);
+			return "ERROR";
+		}
 		if(this.username.equals("")) {
-			session.put("failUser", true);
-			if(this.password.equals("")) {
-				session.put("failPw", true);
-			}
+			session.put("noUser", true);
 			return "ERROR";
 		}
 		if(this.password.equals("")) {
-			session.put("failPw", true);
+			session.put("noPw", true);
 			return "ERROR";
 		}
 		this.getLoginBean().setUsername(this.username);
