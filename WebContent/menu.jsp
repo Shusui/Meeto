@@ -9,6 +9,6 @@
 			<div id = "box"></div>
 			<div id = "meet-info"></div>
 		</div>
-			<div id = "buttons"></div>
+		<div id = "buttons"></div>
 	</body>
 </html>
