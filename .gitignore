@@ -2,7 +2,8 @@
 
 build/
 .settings/
-*.class
 
 .classpath
 .project
+
+.gitignore~

@@ -1,6 +1,8 @@
 package login.model;
 
 import java.rmi.Naming;
+import java.rmi.RemoteException;
+
 import rmiserver.DatabaseInterface;
 
 public class LoginBean {
@@ -11,11 +13,9 @@ public class LoginBean {
 	public LoginBean() {
 		try {
 			String address = "rmi://localhost:2005/database";
-			di = (DatabaseInterface) Naming.lookup(address);
-			
+			di = (DatabaseInterface) Naming.lookup(address);	
 		}
 		catch(Exception e){
-			//System.out.println("Security error");
 			e.printStackTrace();
 		}
 		
@@ -38,15 +38,10 @@ public class LoginBean {
 	public String verifyLogin(){
 		System.out.println(username + " " + password);
 		
-		// FIX LATER
-		return "root";
-		
-		/*
 		try {
 			return di.verifiyLogin(this.username, this.password);
 		} catch (RemoteException e) {
 			return null;
 		}
-		*/
 	}
 }
