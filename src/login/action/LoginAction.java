@@ -16,7 +16,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		session.put("noUser", false);
 		session.put("noPw", false);
 		session.put("noCreds", false);
-		if(this.username.equals("") && this.username.equals("")) {
+		if(this.username.equals("") && this.password.equals("")) {
 			session.put("noCreds", true);
 			return "ERROR";
 		}
