@@ -21,20 +21,20 @@
 		<br><br>
 		
 		<c:choose>
-			<c:when test="${session.noCreds = true}">
-				No credentials inserted.
+			<c:when test="${session.noCreds == true}">
+				<p>No credentials inserted.</p>
 			</c:when>
 			
 			<c:when test="${session.noUser == true}">
-				No username inserted.
+				<p>No username inserted.</p>
 			</c:when>
 			
 			<c:when test="${session.noPw == true}">
-				No password inserted.
+				<p>No password inserted.</p>
 			</c:when>
 			
 			<c:otherwise>
-				Wrong username and/or password.
+				<p>Wrong username and/or password.</p>
 			</c:otherwise>
 		</c:choose>
 		
