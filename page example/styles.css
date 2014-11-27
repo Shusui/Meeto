@@ -1,0 +1,27 @@
+#wrapper {
+	overflow: hidden;
+	clear: both;
+}
+
+#box {
+	width: 60%;
+	height: 500px;
+	background-color: red;
+	float: left ;
+}
+
+#meet-info {
+	width: 40%;
+	height: 500px;
+	background-color: blue;
+	float: right;
+}
+
+#buttons {
+	width: 100%;
+	height: 100px;
+	background-color: green;
+	clear: both;
+	display: table;
+	visibility: visible;
+}
