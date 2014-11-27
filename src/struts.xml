@@ -22,7 +22,7 @@
 	<!-- 'login' action calls 'execute' in 'LoginAction' -->
     <action name="login" class="login.action.LoginAction" method="execute">
       <result name="success">/login.jsp</result>
-      <result name="error">/index_error.jsp</result>
+      <result name="ERROR">/index_error.jsp</result>
     </action>
 
   </package>

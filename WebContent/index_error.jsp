@@ -1,6 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -19,18 +20,23 @@
 		</s:form>
 		<br><br>
 		
-		<s:if test = "${session.failUser == true && session.failPw == true}">
-			No credentials inserted.
-		</s:if>
-		<s:elseif test = "${session.failUser == true}">
-			No username inserted.
-		</s:elseif>
-		<s:elseif test = "${session.failUser == true}">
-			No password inserted.
-		</s:elseif>
-		<s:else>
-			Wrong username and/or password.
-		</s:else>
+		<c:choose>
+			<c:when test="${session.failUser == true && session.failPw == true}">
+				No credentials inserted.
+			</c:when>
+			
+			<c:when test="${session.failUser == true}">
+				No username inserted.
+			</c:when>
+			
+			<c:when test="${session.failPw == true}">
+				No password inserted.
+			</c:when>
+			
+			<c:otherwise>
+				Wrong username and/or password.
+			</c:otherwise>
+		</c:choose>
 		
 	</body>
 </html>
