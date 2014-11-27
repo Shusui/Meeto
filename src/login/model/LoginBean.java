@@ -1,23 +1,30 @@
 package login.model;
 
 import java.rmi.Naming;
-import java.rmi.NotBoundException;
-import java.net.MalformedURLException;
-import java.rmi.RemoteException;
 import rmiserver.DatabaseInterface;
 
 public class LoginBean {
-	private DatabaseInterface db;
+	private DatabaseInterface di;
 	private String username;
 	private String password;
 
 	public LoginBean() {
 		try {
-			db = (DatabaseInterface) Naming.lookup("database");
+			String address = "rmi://localhost:2005/database";
+			di = (DatabaseInterface) Naming.lookup(address);
+			
 		}
+		catch(Exception e){
+			//System.out.println("Security error");
+			e.printStackTrace();
+		}
+		
+		
+		/*
 		catch(NotBoundException | MalformedURLException | RemoteException e) {
 			e.printStackTrace();
 		}
+		*/
 	}
 	
 	public void setUsername(String username) {
@@ -36,7 +43,7 @@ public class LoginBean {
 		
 		/*
 		try {
-			return db.verifiyLogin(this.username, this.password);
+			return di.verifiyLogin(this.username, this.password);
 		} catch (RemoteException e) {
 			return null;
 		}
