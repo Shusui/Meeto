@@ -12,20 +12,29 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 	@Override
 	public String execute() {
-		if(this.username != null && !username.equals("") && password != null && !password.equals("")) {
-			this.getLoginBean().setUsername(this.username);
-			this.getLoginBean().setPassword(this.password);
-			String result = this.getLoginBean().verifyLogin();
-			
-			if(result != null && !result.equals("")){
-				session.put("username", username);
-				session.put("loggedin", true);
-				return SUCCESS;
-			}else
-				return "WRONG";
+		session.put("loggedin", false);
+		session.put("failUser", false);
+		session.put("failPw", false);
+		if(this.username.equals("")) {
+			session.put("failUser", true);
+			if(this.password.equals("")) {
+				session.put("failPw", true);
+			}
+			return "ERROR";
 		}
-		else
-			return LOGIN;
+		if(this.password.equals("")) {
+			session.put("failPw", true);
+			return "ERROR";
+		}
+		this.getLoginBean().setUsername(this.username);
+		this.getLoginBean().setPassword(this.password);
+		String result = this.getLoginBean().verifyLogin();
+		if(result != null && !result.equals("")){
+			session.put("username", username);
+			session.put("loggedin", true);
+			return SUCCESS;
+		}else
+			return "ERROR";
 	}
 	
 	public void setUsername(String username) {
