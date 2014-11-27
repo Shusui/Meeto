@@ -1,16 +1,16 @@
-package rmiserver.application;
+package rmiserver.types;
 
 import java.io.Serializable;
 
-public class User implements Serializable{
+public class Action implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private String id;
-	private String user;
+	private String desc;
  
-    public User(String id, String user){
+    public Action(String id, String desc){
     	this.id = id;
-    	this.user = user;
+    	this.desc = desc;
     }
     
     public String getId() {
@@ -21,11 +21,11 @@ public class User implements Serializable{
     	this.id = id;
     } 
     
-    public String getUser() {
-    	return user;
+    public String getDesc() {
+    	return desc;
     }
     
-    public void setUser(String user){
-    	this.user = user;
+    public void setDesc(String desc){
+    	this.desc = desc;
     }  
 }

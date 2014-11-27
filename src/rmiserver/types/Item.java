@@ -1,4 +1,4 @@
-package rmiserver.application;
+package rmiserver.types;
 
 import java.io.Serializable;
 
