@@ -7,3 +7,6 @@ build/
 .project
 
 .gitignore~
+
+build.bat
+build.sh
