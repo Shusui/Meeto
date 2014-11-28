@@ -19,10 +19,12 @@ public class RegisterAction extends ActionSupport implements SessionAware {
 		
 		session.put("regError", false);
 		session.put("regSuccess", false);
+		session.put("invalidUser", false);
+		session.put("loggedin", false);
+		session.put("failLogin", false);
 		session.put("noUser", false);
 		session.put("noPw", false);
 		session.put("noCreds", false);
-		session.put("invalidUser", false);
 		if(this.username.equals("") && this.password.equals("")) {
 			session.put("noCreds", true);
 			return "ERROR";

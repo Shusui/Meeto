@@ -9,13 +9,15 @@
 		<title>Meeto</title>
 	</head>
 	<body>
-		<s:form action = "login" method = "post">
+		<s:form method = "post">
 			<s:text name = "Username: "/>
 			<s:textfield name = "username"/>
 			<br>
 			<s:text name = "Password: "/>
 			<s:password name = "password"/>
 			<s:submit value = "Login"/>
+			<s:submit vale = "Login" onclick="form.action='login'";/>
+			<br>
 			<s:submit value = "Register" onclick="form.action='register';"/>
 		</s:form>
 		
@@ -46,7 +48,10 @@
 			
 			<c:when test="${session.regSuccess == true}">
 				<p>Successfully registered. Please login now.</p>
-			</c:when>	
+			</c:when>
+
+			<c:otherwise>
+			</c:otherwise>	
 		</c:choose>
 		
 	</body>

@@ -17,6 +17,9 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	public String execute() {
 		System.out.println("Session Login: " + session);
 		
+		session.put("regError", false);
+		session.put("regSuccess", false);
+		session.put("invalidUser", false);
 		session.put("loggedin", false);
 		session.put("failLogin", false);
 		session.put("noUser", false);
