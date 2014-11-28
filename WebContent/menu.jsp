@@ -12,7 +12,10 @@
 	<body>
 		<div id="wrapper">
 			<div id="box">
+				<!--
 				<input type="text" placeholder="please">
+				-->
+				
 				<table>
 					<c:forEach var="meet" items="${session.meetings}">
 						<tr>

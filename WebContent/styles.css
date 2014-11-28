@@ -1,3 +1,45 @@
+html {
+	font-family: "Ubuntu";
+}
+
+#login {
+	background-color: #17bb86;
+}
+
+#login-form {
+	width: 300px;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+
+#logo {
+	width: 14%;
+	padding-left: 575px;
+	padding-top: 50px;
+}
+
+#bottom-pane {
+	top: auto;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: absolute;
+	overflow: hidden;
+	background-color: #139f73;
+	height: 60px;
+}
+
+p {
+	color: red;
+	font-weight: bold;
+}
+
+#acc {
+	color: black;
+	font-weight: bold;
+	padding: 0px 2px 0px;
+}
+
 #wrapper {
 	overflow: hidden;
 	clear: both;

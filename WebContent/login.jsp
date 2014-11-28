@@ -6,53 +6,57 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<link rel="stylesheet" type="text/css" href="styles.css">
 		<title>Meeto</title>
 	</head>
-	<body>
-		<s:form method="post">
-			<s:text name="Username: "/>
-			<s:textfield name="username"/>
+	<body id="login">
+		<img id="logo" src="meeto2.png">
+		<s:form id="login-form" method="post">
+			<div id="acc">Meeto account:</div>
+			<s:textfield name="username" placeholder="Username" size="25"/>
 			<br>
-			<s:text name="Password: "/>
-			<s:password name="password"/>
+			<s:password name="password" placeholder="Password" size="25"/>
 			<br><br>
+			
+			<c:choose>
+				<c:when test="${session.noCreds == true}">
+					<p>No credentials inserted.</p>
+				</c:when>
+				
+				<c:when test="${session.noUser == true}">
+					<p>No username inserted.</p>
+				</c:when>
+	
+				<c:when test="${session.noPw == true}">
+					<p>No password inserted.</p>
+				</c:when>
+				
+				<c:when test="${session.failLogin == true}">
+					<p>Wrong username and/or password.</p>
+				</c:when>
+				
+				<c:when test="${session.invalidUser == true}">
+					<p>User already in use.</p>
+				</c:when>
+				
+				<c:when test="${session.regError == true}">
+					<p>Register error. Please try again.</p>
+				</c:when>
+				
+				<c:when test="${session.regSuccess == true}">
+					<p>Successfully registered. Please login now.</p>
+				</c:when>
+	
+				<c:otherwise>
+				</c:otherwise>	
+			</c:choose>
+			
 			<s:submit value="Login" onclick="form.action='login';"/>
 			<s:submit value="Register" onclick="form.action='register';"/>
-			
 		</s:form>
 		
-		<c:choose>
-			<c:when test="${session.noCreds == true}">
-				<p>No credentials inserted.</p>
-			</c:when>
-			
-			<c:when test="${session.noUser == true}">
-				<p>No username inserted.</p>
-			</c:when>
-
-			<c:when test="${session.noPw == true}">
-				<p>No password inserted.</p>
-			</c:when>
-			
-			<c:when test="${session.failLogin == true}">
-				<p>Wrong username and/or password.</p>
-			</c:when>
-			
-			<c:when test="${session.invalidUser == true}">
-				<p>User already in use.</p>
-			</c:when>
-			
-			<c:when test="${session.regError == true}">
-				<p>Register error. Please try again.</p>
-			</c:when>
-			
-			<c:when test="${session.regSuccess == true}">
-				<p>Successfully registered. Please login now.</p>
-			</c:when>
-
-			<c:otherwise>
-			</c:otherwise>	
-		</c:choose>
+		<div id="bottom-pane">
 		
+		</div>
 	</body>
 </html>
