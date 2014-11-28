@@ -12,19 +12,12 @@ public class LoginBean {
 
 	public LoginBean() {
 		try {
-			String address = "rmi://localhost:2005/database";
+			String address = "rmi://localhost:1099/database";
 			di = (DatabaseInterface) Naming.lookup(address);	
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		
-		
-		/*
-		catch(NotBoundException | MalformedURLException | RemoteException e) {
-			e.printStackTrace();
-		}
-		*/
 	}
 	
 	public void setUsername(String username) {
