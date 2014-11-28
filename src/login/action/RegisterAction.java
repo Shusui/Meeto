@@ -1,8 +1,11 @@
 package login.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+
 import org.apache.struts2.interceptor.SessionAware;
+
 import java.util.Map;
+
 import login.model.RegisterBean;
 
 public class RegisterAction extends ActionSupport implements SessionAware {
@@ -12,6 +15,8 @@ public class RegisterAction extends ActionSupport implements SessionAware {
 	
 	@Override
 	public String execute() {
+		System.out.println("Session: " + session);
+		
 		session.put("regError", false);
 		session.put("regSuccess", true);
 		session.put("noUser", false);
@@ -66,10 +71,8 @@ public class RegisterAction extends ActionSupport implements SessionAware {
 	}
 	
 	@Override
-	public void setSession(Map<String, Object> arg0) {
+	public void setSession(Map<String, Object> session) {
+		System.out.println("Session2");
 		this.session = session;
 	}
-	
-	
-	
 }

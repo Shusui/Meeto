@@ -16,7 +16,7 @@
 			<s:text name = "Password: "/>
 			<s:password name = "password"/>
 			<s:submit value = "Login"/>
-			<s:submit value = "Register" action = "register"/>
+			<s:submit value = "Register" onclick="form.action='register';"/>
 		</s:form>
 		
 		<c:choose>
