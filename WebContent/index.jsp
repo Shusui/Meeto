@@ -36,7 +36,7 @@
 				<p>Wrong username and/or password.</p>
 			</c:when>
 			
-			<c:when test="${session.invalidUser ==true}">
+			<c:when test="${session.invalidUser == true}">
 				<p>User already in use.</p>
 			</c:when>
 			

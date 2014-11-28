@@ -18,7 +18,7 @@ public class RegisterAction extends ActionSupport implements SessionAware {
 		System.out.println("Session: " + session);
 		
 		session.put("regError", false);
-		session.put("regSuccess", true);
+		session.put("regSuccess", false);
 		session.put("noUser", false);
 		session.put("noPw", false);
 		session.put("noCreds", false);
