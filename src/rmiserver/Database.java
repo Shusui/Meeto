@@ -36,7 +36,7 @@ public class Database {
  			DatabaseImplements db = new DatabaseImplements("meeto");
  			System.out.println("Connected to database!");
  			
- 			Registry r = LocateRegistry.createRegistry(2005);
+ 			Registry r = LocateRegistry.createRegistry(1099);
  			r.rebind("database", db);
  		} catch (Exception e) {
  			e.printStackTrace();

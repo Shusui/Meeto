@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-import rmiserver.types.Action;
-import rmiserver.types.Key;
-import rmiserver.types.Meeting;
-import rmiserver.types.User;
-import rmiserver.types.Item;
+import rmiserver.application.Action;
+import rmiserver.application.Key;
+import rmiserver.application.Meeting;
+import rmiserver.application.User;
+import rmiserver.application.Item;
 
 public class DatabaseImplements extends UnicastRemoteObject implements DatabaseInterface {
 

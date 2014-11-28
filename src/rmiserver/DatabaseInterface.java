@@ -4,11 +4,11 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import rmiserver.types.Action;
-import rmiserver.types.Key;
-import rmiserver.types.Meeting;
-import rmiserver.types.User;
-import rmiserver.types.Item;
+import rmiserver.application.Action;
+import rmiserver.application.Key;
+import rmiserver.application.Meeting;
+import rmiserver.application.User;
+import rmiserver.application.Item;
 
 public interface DatabaseInterface extends Remote {
 	public String createAccount(String user, String pw) throws RemoteException;
