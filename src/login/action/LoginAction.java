@@ -9,7 +9,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	private static final long serialVersionUID = 4L;
 	private Map<String, Object> session;
 	private String username = null, password = null;
-
+		
 	@Override
 	public String execute() {
 		System.out.println("Session Login: " + session);

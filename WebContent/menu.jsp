@@ -34,7 +34,7 @@
 		<div id="buttons">
 			<s:form method="post">
 				<br>
-				<s:submit value="Schedule"/>
+				<s:submit value="Schedule" />
 				<s:submit value="Remove"/>
 				<s:submit value="Reload"/>
 				<s:submit value="Add"/>

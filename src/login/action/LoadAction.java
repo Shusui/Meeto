@@ -1,6 +1,7 @@
 package login.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+
 import org.apache.struts2.interceptor.SessionAware;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import rmiserver.application.Meeting;
 public class LoadAction extends ActionSupport implements SessionAware {
 	private static final long serialVersionUID = 1L;
 	private Map<String, Object> session;
-
+	
 	@Override
 	public String execute() {
 		ArrayList<Meeting> meetings = this.getLoadBean().loadMeetings();
