@@ -3,20 +3,21 @@ package login.action;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
 import java.util.Map;
-import login.model.LoginBean;
+import login.model.RegisterBean;
 
-public class LoginAction extends ActionSupport implements SessionAware {
+public class RegisterAction extends ActionSupport implements SessionAware {
 	private static final long serialVersionUID = 4L;
 	private Map<String, Object> session;
 	private String username = null, password = null;
-
+	
 	@Override
 	public String execute() {
-		session.put("loggedin", false);
-		session.put("failLogin", true);
+		session.put("regError", false);
+		session.put("regSuccess", true);
 		session.put("noUser", false);
 		session.put("noPw", false);
 		session.put("noCreds", false);
+		session.put("invalidUser", false);
 		if(this.username.equals("") && this.password.equals("")) {
 			session.put("noCreds", true);
 			return "ERROR";
@@ -29,15 +30,18 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			session.put("noPw", true);
 			return "ERROR";
 		}
-		this.getLoginBean().setUsername(this.username);
-		this.getLoginBean().setPassword(this.password);
-		String result = this.getLoginBean().verifyLogin();
+		this.getRegisterBean().setUsername(this.username);
+		this.getRegisterBean().setPassword(this.password);
+		String result = this.getRegisterBean().createAccount();
 		if(result != null && !result.equals("")){
-			session.put("username", username);
-			session.put("loggedin", true);
+			session.put("regSuccess", true);
 			return SUCCESS;
+		
+		} else if(result.equals("")) {
+			session.put("invalidUser", true);
+			return "ERROR";
 		}else {
-			session.put("failLogin", true);
+			session.put("regError", true);
 			return "ERROR";
 		}
 	}
@@ -50,19 +54,22 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		this.password = password;
 	}
 	
-	public LoginBean getLoginBean() {
-		if(!session.containsKey("loginBean"))
-			this.setLoginBean(new LoginBean());
+	public RegisterBean getRegisterBean() {
+		if(!session.containsKey("registerBean"))
+			this.setRegisterBean(new RegisterBean());
 		
-		return (LoginBean) session.get("loginBean");
+		return (RegisterBean) session.get("registerBean");
 	}
 
-	public void setLoginBean(LoginBean loginBean) {
-		this.session.put("loginBean", loginBean);
+	public void setRegisterBean(RegisterBean registerBean) {
+		this.session.put("registerBean", registerBean);
 	}
-
+	
 	@Override
-	public void setSession(Map<String, Object> session) {
+	public void setSession(Map<String, Object> arg0) {
 		this.session = session;
 	}
+	
+	
+	
 }
