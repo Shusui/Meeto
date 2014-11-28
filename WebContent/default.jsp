@@ -15,10 +15,10 @@
 			<br>
 			<s:text name = "Password: "/>
 			<s:password name = "password"/>
-			<s:submit value = "Login"/>
-			<s:submit vale = "Login" onclick="form.action='login'";/>
-			<br>
+			<br><br>
+			<s:submit value = "Login" onclick="form.action='login';"/>
 			<s:submit value = "Register" onclick="form.action='register';"/>
+			
 		</s:form>
 		
 		<c:choose>

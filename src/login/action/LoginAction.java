@@ -1,11 +1,8 @@
 package login.action;
 
 import com.opensymphony.xwork2.ActionSupport;
-
 import org.apache.struts2.interceptor.SessionAware;
-
 import java.util.Map;
-
 import login.model.LoginBean;
 
 public class LoginAction extends ActionSupport implements SessionAware {
