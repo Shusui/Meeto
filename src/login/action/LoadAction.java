@@ -16,6 +16,8 @@ public class LoadAction extends ActionSupport implements SessionAware {
 	
 	@Override
 	public String execute() {
+		//System.out.println("Meetpos:" + session.get("meet_pos"));
+		
 		ArrayList<Meeting> meetings = this.getLoadBean().loadMeetings();
 		session.put("meetings", meetings);
 		return SUCCESS;

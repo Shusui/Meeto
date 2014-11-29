@@ -1,7 +1,9 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" 
+	pageEncoding="ISO-8859-1"%>
+<%@ page import="rmiserver.application.Meeting"%>
+<%@ page import="java.util.ArrayList;"%>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -30,7 +32,22 @@
 					</c:forEach>
 				</table>
 			</div>
+			
 			<div id="meet-info">
+				<%
+					int pos = 0;
+				%>
+			
+				<select onChange="">
+					<c:forEach var="meet" items="${session.meetings}">
+						<option value=${meet.getId()}>
+							 <%
+							 	pos = pos + 1;
+							 %>
+							 <%= pos%>
+						</option>
+					</c:forEach>
+				</select>
 			</div>
 		</div>
 		
