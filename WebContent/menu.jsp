@@ -3,7 +3,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" 
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="rmiserver.application.Meeting"%>
-<%@ page import="java.util.ArrayList;"%>
+<%@ page import="rmiserver.application.User"%>
+<%@ page import="rmiserver.application.Action"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="login.model.LoadBean;"%>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -13,6 +16,57 @@
 	</head>
 	<body>
 		<div id="wrapper">
+			<div id="meet-info">			
+				<form id="menu" name="menu" action="menu.jsp" method="post">
+					<%
+						int pos = 0;
+					%>	
+					
+					<select name="meeting" onchange="document.getElementById('menu').submit();">
+						<option value="-1">
+							Select a meeting
+						</option>
+						<c:forEach var="meet" items="${session.meetings}">
+							<option value=${meet.getId()}>
+								 <%
+								 	pos = pos + 1;
+								 %>
+								 <%= pos %>
+							</option>
+						</c:forEach>
+					</select>
+				</form>
+				<%
+					String value = request.getParameter("meeting");
+					if(value != null){	
+				    	session.setAttribute("meeting_id", value);
+				    }
+				%>
+				<%= "Meeting id=" + session.getAttribute("meeting_id")%>
+				
+				<%
+					ArrayList<Action> ma = null;
+					if(Integer.parseInt(session.getAttribute("meeting_id").toString()) != -1){
+						LoadBean lb = new LoadBean();
+						ma = lb.loadUserActions(session.getAttribute("meeting_id").toString(),
+												session.getAttribute("username").toString());
+						session.setAttribute("actions", ma);
+					}
+				%>
+				
+				<br><br>
+				Personal TODO-List:
+				<table>
+					<c:forEach var="action" items="${session.actions}">
+						<tr>
+							<td>
+								<input size = "23" type="text" value=${action.getDesc()}>
+							</td>	
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
+		
 			<div id="box">
 				<!--
 				<input type="text" placeholder="please">
@@ -31,32 +85,22 @@
 						</tr>
 					</c:forEach>
 				</table>
-			</div>
-			
-			<div id="meet-info">			
-				<form id="menu" name="menu" action="menu.jsp" method="post">
-					<%
-						int pos = 0;
-					%>	
-					
-					<select name="meeting" onchange="document.getElementById('menu').submit();">
-						<c:forEach var="meet" items="${session.meetings}">
-							<option value=${meet.getId()}>
-								 <%
-								 	pos = pos + 1;
-								 %>
-								 <%= pos %>
-							</option>
-						</c:forEach>
-					</select>
-				</form>
-				<%
-					String value = request.getParameter("meeting");
-					if(value != null){	
-				    	session.setAttribute("meeting_id", value);
-				    }
+				
+				<br>
+				<% 
+					String meet_users = "";
+					if(Integer.parseInt(session.getAttribute("meeting_id").toString()) != -1){
+						LoadBean lb = new LoadBean();
+						ArrayList<User> mu = lb.loadMeetUsers(session.getAttribute("meeting_id").toString());
+						
+						for(int i = 0; i < mu.size(); i++){
+							meet_users += mu.get(i).getUser() + " - ";
+						}
+					}
 				%>
-				<%= "Meeting id=" + session.getAttribute("meeting_id")%>
+				
+				Meet Users: <br>
+				<%= meet_users %>
 			</div>
 		</div>
 		
