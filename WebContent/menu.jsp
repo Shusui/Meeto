@@ -76,6 +76,11 @@
 				<s:submit value="Action Done"/>
 				<s:submit value="All Action"/>
 			</s:form>
+			<br>
+			<s:form method="post">
+				<s:textfield name="username" placeholder = "Type a username"/>
+				<s:submit value = "Add User" onclick="form.action='add_user';"/>
+			</s:form>
 		</div>
 	</body>
 </html>
