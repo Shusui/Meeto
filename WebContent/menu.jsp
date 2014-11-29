@@ -64,7 +64,7 @@
 			<s:form method="post">
 				<br>
 				<s:submit value="Schedule" onclick="form.action='schedule';"/>
-				<s:submit value="Remove"/>
+				<s:submit value="Remove" onclick="form.action='remove';"/>
 				<s:submit value="Reload"/>
 				<s:submit value="Add"/>
 				<s:submit value="Remove"/>
