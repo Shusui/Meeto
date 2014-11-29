@@ -23,6 +23,7 @@ public class InitAction extends ActionSupport implements SessionAware {
 		session.put("noUser", false);
 		session.put("noPw", false);
 		session.put("noCreds", false);
+		session.put("meeting_id", -1);
 
 		return SUCCESS;
 	}

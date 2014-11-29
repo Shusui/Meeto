@@ -33,21 +33,30 @@
 				</table>
 			</div>
 			
-			<div id="meet-info">
+			<div id="meet-info">			
+				<form id="menu" name="menu" action="menu.jsp" method="post">
+					<%
+						int pos = 0;
+					%>	
+					
+					<select name="meeting" onchange="document.getElementById('menu').submit();">
+						<c:forEach var="meet" items="${session.meetings}">
+							<option value=${meet.getId()}>
+								 <%
+								 	pos = pos + 1;
+								 %>
+								 <%= pos %>
+							</option>
+						</c:forEach>
+					</select>
+				</form>
 				<%
-					int pos = 0;
+					String value = request.getParameter("meeting");
+					if(value != null){	
+				    	session.setAttribute("meeting_id", value);
+				    }
 				%>
-			
-				<select onChange="">
-					<c:forEach var="meet" items="${session.meetings}">
-						<option value=${meet.getId()}>
-							 <%
-							 	pos = pos + 1;
-							 %>
-							 <%= pos%>
-						</option>
-					</c:forEach>
-				</select>
+				<%= "Meeting id=" + session.getAttribute("meeting_id")%>
 			</div>
 		</div>
 		
