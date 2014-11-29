@@ -26,7 +26,7 @@ public class DeleteAction extends ActionSupport implements SessionAware {
 		if(!session.containsKey("deleteBean"))
 			this.setDeleteBean(new DeleteBean());
 		
-		return (CreateBean) session.get("createBean");
+		return (DeleteBean) session.get("deleteBean");
 	}
 
 	public void setDeleteBean(DeleteBean deleteBean) {
