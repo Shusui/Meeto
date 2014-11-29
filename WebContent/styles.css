@@ -45,6 +45,10 @@ p {
 	clear: both;
 }
 
+#lol {
+	padding-left: 50px;
+}
+
 #box {
 	width: 80%;
 	height: 535px;
