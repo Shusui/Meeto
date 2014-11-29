@@ -30,5 +30,9 @@
    			<result>/menu.jsp</result>
    		</action>
    		
+   		<action name="schedule" class="login.action.CreateAction" method="execute">
+   			<result name="success" type="chain">load</result>
+   		</action>
+   		
    	</package>
 </struts>
