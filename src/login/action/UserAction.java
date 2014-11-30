@@ -19,6 +19,21 @@ public class UserAction extends ActionSupport implements SessionAware {
 		return SUCCESS;
 	}
 	
+	public String execute_() {
+		String meeting_id = session.get("meeting_id").toString();
+		if(!meeting_id.equals("-1")) {
+			String result = this.getUserBean().delUser(username, meeting_id);
+		}
+		return SUCCESS;
+	}
+	
+	public String decline() {
+		String meeting_id = session.get("meeting_id").toString();
+		if(!meeting_id.equals("-1")) {
+			String result = this.getUserBean().delUser(session.get("username").toString(), meeting_id);
+		}
+	}
+	
 	public void setUsername(String username) {
 		this.username = username;
 	}

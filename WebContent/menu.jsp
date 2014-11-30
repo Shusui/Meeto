@@ -177,6 +177,8 @@
 			<s:form method="post">
 				<s:textfield name="username" placeholder = "Type a username"/>
 				<s:submit value = "Add User" onclick="form.action='add_user';"/>
+				<s:submit value = "Remove User" onclick="form.action='del_user';"/>
+				<s:submit value = "Decline Meeting" onclick="form.action='decline';"/>
 			</s:form>
 			<s:form method="post">
 				<s:submit value="New Item" onclick="form.action='add_item';"/>

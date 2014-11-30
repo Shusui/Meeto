@@ -42,6 +42,14 @@
    			<result name="success" type="chain">load</result>
    		</action>
    		
+   		<action name="del_user" class="login.action.UserAction" method="execute_">
+   			<result name="success" type="chain">load</result>
+   		</action>
+   		
+   		<action name="decline" class="login.action.UserAction" method="decline">
+   			<result name="success" type="chain">load</result>
+   		</action>
+   		
    		<action name="add_item" class="login.action.CreateAction" method="newitem">
    			<result name="success" type="chain">load</result>
    		</action>

@@ -25,4 +25,13 @@ public class UserBean {
 			return null;
 		}
 	}
+	
+	public String delUser(String username, String meeting_id) {
+		try {
+			return di.delMeetingUser(username, meeting_id);
+		} catch (RemoteException e) {
+			return null;
+		}
+	}
+	
 }
