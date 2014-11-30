@@ -32,6 +32,8 @@ public class UserAction extends ActionSupport implements SessionAware {
 		if(!meeting_id.equals("-1")) {
 			String result = this.getUserBean().delUser(session.get("username").toString(), meeting_id);
 		}
+		
+		return SUCCESS;
 	}
 	
 	public void setUsername(String username) {
