@@ -180,6 +180,15 @@
 				<s:submit value = "Remove User" onclick="form.action='del_user';"/>
 				<s:submit value = "Decline Meeting" onclick="form.action='decline';"/>
 			</s:form>
+			<br>
+			<s:form method="post">
+				<s:textfield name="title" placeholder = "New Title"/>
+				<s:textfield name="description" placeholder = "New Description"/>
+				<s:textfield name="date" placeholder = "New Date"/>
+				<s:textfield name="location" placeholder = "New Location"/>
+				<s:submit value = "Update Meeting" onclick="form.action='update_meeting';"/>
+			</s:form>
+			<br>
 			<s:form method="post">
 				<s:submit value="New Item" onclick="form.action='add_item';"/>
 				<s:submit value="Remove Item" onclick="form.action='del_item';"/>
