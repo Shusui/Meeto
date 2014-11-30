@@ -5,6 +5,7 @@
 <%@ page import="rmiserver.application.Meeting"%>
 <%@ page import="rmiserver.application.User"%>
 <%@ page import="rmiserver.application.Action"%>
+<%@ page import="rmiserver.application.Item"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="login.model.LoadBean;"%>
     
@@ -40,6 +41,7 @@
 					String value = request.getParameter("meeting");
 					if(value != null){	
 				    	session.setAttribute("meeting_id", value);
+				    	session.setAttribute("item_id", "-1");
 				    }
 				%>
 				<%= "Meeting id=" + session.getAttribute("meeting_id")%>
@@ -53,6 +55,59 @@
 						session.setAttribute("actions", ma);
 					}
 				%>
+				<%
+					ArrayList<Item> mi = null;
+					if(Integer.parseInt(session.getAttribute("meeting_id").toString()) != -1){
+						LoadBean lb = new LoadBean();
+						mi = lb.loadItems(session.getAttribute("meeting_id").toString());
+						session.setAttribute("items", mi);
+					}
+				%>
+				
+				<br><br>
+				<form id="asd" name="asd" action="menu.jsp" method="post">
+					<%
+						int ipos = 0;
+					%>
+				
+					<select name="item" onchange="document.getElementById('asd').submit();">
+						<option value="-1">
+							Select a item
+						</option>
+						<c:forEach var="item" items="${session.items}">
+							<option value=${item.getId()}>
+								 <%
+									ipos = ipos + 1;
+								 %>
+								 <%= ipos %>
+							</option>
+						</c:forEach>
+					</select>
+				</form>
+				
+				<%
+					String value_ = request.getParameter("item");
+					if(value_ != null){	
+				    	session.setAttribute("item_id", value_);
+				    }
+				%>
+				
+				<br>
+				<%= "Item id=" + session.getAttribute("item_id")%>
+				<br><br>
+				
+				Meeting Agenda:
+				<table>
+					<c:forEach var="item" items="${session.items}">
+						<tr>
+							<td>
+								<input size = "8" type="text" value=${item.getTitle()}>
+								<input size = "8" type="text" value=${item.getDesc()}>
+							</td>	
+						</tr>
+					</c:forEach>
+				</table>
+				
 				
 				<br><br>
 				Personal TODO-List:
@@ -113,8 +168,6 @@
 				<s:submit value="Add"/>
 				<s:submit value="Remove"/>
 				<s:submit value="Decline"/>
-				<s:submit value="New Item"/>
-				<s:submit value="Remove Item"/>
 				<s:submit value="New Key"/>
 				<s:submit value="Assign Task"/>
 				<s:submit value="Action Done"/>
@@ -124,6 +177,10 @@
 			<s:form method="post">
 				<s:textfield name="username" placeholder = "Type a username"/>
 				<s:submit value = "Add User" onclick="form.action='add_user';"/>
+			</s:form>
+			<s:form method="post">
+				<s:submit value="New Item" onclick="form.action='add_item';"/>
+				<s:submit value="Remove Item" onclick="form.action='del_item';"/>
 			</s:form>
 		</div>
 	</body>

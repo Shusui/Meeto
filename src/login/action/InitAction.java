@@ -14,7 +14,7 @@ public class InitAction extends ActionSupport implements SessionAware {
 	
 	@Override
 	public String execute() {
-		System.out.println("All False");
+		System.out.println("All False and Null");
 		session.put("regError", false);
 		session.put("regSuccess", false);
 		session.put("invalidUser", false);
@@ -24,6 +24,9 @@ public class InitAction extends ActionSupport implements SessionAware {
 		session.put("noPw", false);
 		session.put("noCreds", false);
 		session.put("meeting_id", -1);
+		session.put("actions", null);
+		session.put("item_id", -1);
+		session.put("items", null);
 
 		return SUCCESS;
 	}

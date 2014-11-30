@@ -42,5 +42,13 @@
    			<result name="success" type="chain">load</result>
    		</action>
    		
+   		<action name="add_item" class="login.action.CreateAction" method="newitem">
+   			<result name="success" type="chain">load</result>
+   		</action>
+   		
+   		<action name="del_item" class="login.action.DeleteAction" method="delitem">
+   			<result name="success" type="chain">load</result>
+   		</action>
+   		
    	</package>
 </struts>

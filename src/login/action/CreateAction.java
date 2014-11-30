@@ -14,6 +14,18 @@ public class CreateAction extends ActionSupport implements SessionAware {
 	private static final long serialVersionUID = 1L;
 	private Map<String, Object> session;
 	
+	public String newitem(){
+		String meeting_id = session.get("meeting_id").toString();
+		if(!meeting_id.equals("-1")) {
+			System.out.println("NEW ITEM\n");
+			String result = this.getCreateBean().addItem((String) session.get("username"), (String) session.get("meeting_id"));
+		}
+		else{
+			System.out.println("-1");
+		}
+		return SUCCESS;
+	}
+	
 	@Override
 	public String execute() {
 		String result = this.getCreateBean().scheduleMeeting((String) session.get("username"));

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import rmiserver.DatabaseInterface;
 import rmiserver.application.Action;
+import rmiserver.application.Item;
 import rmiserver.application.Meeting;
 import rmiserver.application.User;
 
@@ -41,6 +42,14 @@ public class LoadBean {
 	public ArrayList<Action> loadUserActions(String idmeeting, String user){
 		try{
 			return di.personalTodo(idmeeting, user);
+		} catch (RemoteException e) {
+			return null;
+		}
+	}
+	
+	public ArrayList<Item> loadItems(String idmeeting){
+		try{
+			return di.loadItems(idmeeting);
 		} catch (RemoteException e) {
 			return null;
 		}

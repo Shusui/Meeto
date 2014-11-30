@@ -19,6 +19,14 @@ public class CreateBean {
 		}
 	}
 	
+	public String addItem(String username, String idmeeting){
+		try {
+			return di.createItem(username, idmeeting);
+		} catch (RemoteException e) {
+			return null;
+		}
+	}
+	
 	public String scheduleMeeting(String leader) {
 		try {
 			return di.createMeeting(leader);

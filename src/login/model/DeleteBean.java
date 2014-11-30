@@ -25,4 +25,12 @@ public class DeleteBean {
 			return null;
 		}
 	}
+	
+	public String deleteItem(String item_id) {
+		try {
+			return di.deleteItem(item_id);
+		} catch (RemoteException e) {
+			return null;
+		}
+	}
 }

@@ -13,6 +13,18 @@ public class DeleteAction extends ActionSupport implements SessionAware {
 	private static final long serialVersionUID = 1L;
 	private Map<String, Object> session;
 	
+	public String delitem(){
+		String item_id = session.get("item_id").toString();
+		if(!item_id.equals("-1")) {
+			System.out.println("DELETE ITEM");
+			String result = this.getDeleteBean().deleteItem(item_id);
+		}
+		else{
+			System.out.println("-1");
+		}
+		return SUCCESS;
+	}
+	
 	@Override
 	public String execute() {
 		String meeting_id = session.get("meeting_id").toString();
