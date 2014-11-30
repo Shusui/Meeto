@@ -184,6 +184,12 @@
 				<s:submit value="New Item" onclick="form.action='add_item';"/>
 				<s:submit value="Remove Item" onclick="form.action='del_item';"/>
 			</s:form>
+			<br>
+			<s:form method="post">
+				<s:textfield name="description" placeholder = "Type a description"/>
+				<s:textfield name="username" placeholder = "Type a username"/>
+				<s:submit value="Assign Task" onclick="form.action='assign';"/>
+			</s:form>
 		</div>
 	</body>
 </html>
