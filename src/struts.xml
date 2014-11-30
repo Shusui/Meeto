@@ -66,5 +66,9 @@
    			<result name="success" type="chain">load</result>
    		</action>
    		
+   		<action name="desc_item" class="login.action.UpdateAction" method="modifyitem">
+   			<result name="success" type="chain">load</result>
+   		</action>
+   		
    	</package>
 </struts>

@@ -1,11 +1,8 @@
 package login.action;
 
 import com.opensymphony.xwork2.ActionSupport;
-
 import org.apache.struts2.interceptor.SessionAware;
-
 import java.util.Map;
-
 import login.model.TaskBean;
 
 public class TaskAction extends ActionSupport implements SessionAware {
@@ -15,9 +12,13 @@ public class TaskAction extends ActionSupport implements SessionAware {
 	
 	@Override
 	public String execute() {
+		System.out.println("TASK");
 		String meeting_id = session.get("meeting_id").toString();
 		if(!meeting_id.equals("-1") && username != null && description != null && !username.equals("") && !description.equals("")) {
 			String result = this.getTaskBean().assignUserTask(username, meeting_id, description);
+		}
+		else{
+			System.out.println("NOT TASK");
 		}
 		return SUCCESS;
 	}
@@ -26,7 +27,7 @@ public class TaskAction extends ActionSupport implements SessionAware {
 		this.username = username;
 	}
 	
-	public void setDescritpion(String description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
 	

@@ -164,12 +164,7 @@
 				<br>
 				<s:submit value="Schedule" onclick="form.action='schedule';"/>
 				<s:submit value="Remove" onclick="form.action='remove';"/>
-				<s:submit value="Reload"/>
-				<s:submit value="Add"/>
-				<s:submit value="Remove"/>
-				<s:submit value="Decline"/>
 				<s:submit value="New Key"/>
-				<s:submit value="Assign Task"/>
 				<s:submit value="Action Done"/>
 				<s:submit value="All Action"/>
 			</s:form>
@@ -190,8 +185,11 @@
 			</s:form>
 			<br>
 			<s:form method="post">
+				<s:textfield name="description" placeholder = "Change Description"/>
+				<s:textfield name="title" placeholder = "Change Title"/>
 				<s:submit value="New Item" onclick="form.action='add_item';"/>
 				<s:submit value="Remove Item" onclick="form.action='del_item';"/>
+				<s:submit value="Update Item" onclick="form.action='desc_item';"/>
 			</s:form>
 			<br>
 			<s:form method="post">

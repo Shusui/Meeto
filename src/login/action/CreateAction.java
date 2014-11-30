@@ -25,7 +25,7 @@ public class CreateAction extends ActionSupport implements SessionAware {
 		}
 		return SUCCESS;
 	}
-	
+
 	@Override
 	public String execute() {
 		String result = this.getCreateBean().scheduleMeeting((String) session.get("username"));

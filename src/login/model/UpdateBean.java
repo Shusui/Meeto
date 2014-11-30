@@ -25,4 +25,12 @@ public class UpdateBean {
 			return null;
 		}
 	}
+	
+	public String updateItem(String id_item, String new_value, String column) {
+		try {
+			return di.updateCell(id_item, new_value, column, "item");
+		} catch (RemoteException e) {
+			return null;
+		}
+	}
 }

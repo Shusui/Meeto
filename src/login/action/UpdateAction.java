@@ -13,6 +13,20 @@ public class UpdateAction extends ActionSupport implements SessionAware {
 	private Map<String, Object> session;
 	private String title = null, description = null, date = null, location = null;
 	
+	public String modifyitem(){
+		String meeting_id = session.get("meeting_id").toString();
+		String item_id = session.get("item_id").toString();
+		
+		if(!meeting_id.equals("-1") && !item_id.equals("-1") && description != null && !description.equals("")){
+			String tmp = this.getUpdateBean().updateItem(item_id, description, "description");
+		}
+		if(!meeting_id.equals("-1") && !item_id.equals("-1") && title != null && !title.equals("")){
+			String tmp = this.getUpdateBean().updateItem(item_id, title, "title");
+		}
+		
+		return SUCCESS;
+	}
+	
 	@Override
 	public String execute() {
 		String meeting_id = session.get("meeting_id").toString();
@@ -37,7 +51,7 @@ public class UpdateAction extends ActionSupport implements SessionAware {
 		this.title = title;
 	}
 	
-	public void setDescritpion(String description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
 	
