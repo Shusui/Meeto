@@ -6,6 +6,7 @@
 <%@ page import="rmiserver.application.User"%>
 <%@ page import="rmiserver.application.Action"%>
 <%@ page import="rmiserver.application.Item"%>
+<%@ page import="rmiserver.application.Key"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="login.model.LoadBean;"%>
     
@@ -96,6 +97,16 @@
 				<%= "Item id=" + session.getAttribute("item_id")%>
 				<br><br>
 				
+				
+				<% 
+					ArrayList<Key> ik = null;
+					if(Integer.parseInt(session.getAttribute("item_id").toString()) != -1){
+						LoadBean lb = new LoadBean();
+						ik = lb.loadKeys(session.getAttribute("item_id").toString());
+						session.setAttribute("keys", ik);
+					}
+				%>
+			
 				Meeting Agenda:
 				<table>
 					<c:forEach var="item" items="${session.items}">
@@ -108,7 +119,19 @@
 					</c:forEach>
 				</table>
 				
+				<br><br>
 				
+				Item keydecisions:
+				<table>
+					<c:forEach var="key" items="${session.keys}">
+						<tr>
+							<td>
+								<input size = "20" type="text" value=${key.getDesc()}>
+							</td>
+						</tr>
+					</c:forEach>
+				</table>
+							
 				<br><br>
 				Personal TODO-List:
 				<table>

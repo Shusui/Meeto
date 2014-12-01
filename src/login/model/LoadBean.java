@@ -9,6 +9,7 @@ import rmiserver.application.Action;
 import rmiserver.application.Item;
 import rmiserver.application.Meeting;
 import rmiserver.application.User;
+import rmiserver.application.Key;
 
 public class LoadBean {
 	private DatabaseInterface di;
@@ -50,6 +51,14 @@ public class LoadBean {
 	public ArrayList<Item> loadItems(String idmeeting){
 		try{
 			return di.loadItems(idmeeting);
+		} catch (RemoteException e) {
+			return null;
+		}
+	}
+	
+	public ArrayList<Key> loadKeys(String iditem){
+		try{
+			return di.loadKeys(iditem);
 		} catch (RemoteException e) {
 			return null;
 		}
