@@ -9,12 +9,17 @@ html {
 #login-form {
 	width: 300px;
     margin: 0 auto;
-    padding-top: 50px;
+    padding-top: 250px;
 }
 
 #logo {
 	width: 14%;
-	padding-left: 575px;
+	position: absolute;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 50;
 	padding-top: 50px;
 }
 
