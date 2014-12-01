@@ -8,7 +8,7 @@ import java.util.Map;
 
 import login.model.KeyBean;
 
-public class KeyAction {
+public class KeyAction extends ActionSupport implements SessionAware {
 	private static final long serialVersionUID = 1L;
 	private Map<String, Object> session;
 	private String description = null;
@@ -17,9 +17,11 @@ public class KeyAction {
 	public String execute() {
 		String meeting_id = session.get("meeting_id").toString();
 		String item_id = session.get("item_id").toString();
-		if(!meeting_id.equals("-1") && !item_id.equals("-1")) {
+		if(!meeting_id.equals("-1") && !item_id.equals("-1") && description != null && !description.equals("")) {
 			this.getKeyBean().newKeyDecision(item_id, description);
 		}
+		
+		return SUCCESS;
 	}
 	
 	public void setDescription(String description) {
