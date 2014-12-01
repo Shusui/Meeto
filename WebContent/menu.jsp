@@ -16,7 +16,7 @@
 		<title>Meeto</title>
 		<link rel="stylesheet" type="text/css" href="styles.css">
 	</head>
-	<body>
+	<body>	
 		<div id="wrapper">
 			<div id="meet-info">			
 				<form id="menu" name="menu" action="menu.jsp" method="post">
