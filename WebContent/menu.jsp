@@ -43,6 +43,7 @@
 					if(value != null){	
 				    	session.setAttribute("meeting_id", value);
 				    	session.setAttribute("item_id", "-1");
+				    	session.setAttribute("action_id", "-1");
 				    }
 				%>
 				<%= "Meeting id=" + session.getAttribute("meeting_id")%>
@@ -73,7 +74,7 @@
 				
 					<select name="item" onchange="document.getElementById('asd').submit();">
 						<option value="-1">
-							Select a item
+							Select an item
 						</option>
 						<c:forEach var="item" items="${session.items}">
 							<option value=${item.getId()}>
@@ -97,7 +98,6 @@
 				<%= "Item id=" + session.getAttribute("item_id")%>
 				<br><br>
 				
-				
 				<% 
 					ArrayList<Key> ik = null;
 					if(Integer.parseInt(session.getAttribute("item_id").toString()) != -1){
@@ -106,6 +106,34 @@
 						session.setAttribute("keys", ik);
 					}
 				%>
+				
+				<form id="kk" name="kk" action="menu.jsp" method="post">
+					<%
+						int apos = 0;
+					%>
+				
+					<select name="action" onchange="document.getElementById('kk').submit();">
+						<option value="-1">
+							Select an action
+						</option>
+						<c:forEach var="action" items="${session.actions}">
+							<option value=${action.getId()}>
+								 <%
+								 	apos = apos + 1;
+								 %>
+								 <%= apos %>
+							</option>
+						</c:forEach>
+					</select>
+				</form>
+				
+				<%
+					String value__ = request.getParameter("action");
+					if(value__ != null){	
+				    	session.setAttribute("action_id", value__);
+				    }
+				%>
+				<%= "Action id=" + session.getAttribute("action_id")%>
 			
 				Meeting Agenda:
 				<table>
