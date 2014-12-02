@@ -134,7 +134,7 @@
 				    }
 				%>
 				<%= "Action id=" + session.getAttribute("action_id")%>
-			
+				<br><br>
 				Meeting Agenda:
 				<table>
 					<c:forEach var="item" items="${session.items}">
