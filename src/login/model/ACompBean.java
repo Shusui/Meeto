@@ -20,7 +20,7 @@ public class ACompBean {
 	
 	public String completeTask(String action_id) {
 		try {
-			return di.markasCompleted(action_id)
+			return di.markasCompleted(action_id);
 		} catch (RemoteException e) {
 			return null;
 		}

@@ -25,7 +25,7 @@ public class ACompAction extends ActionSupport implements SessionAware {
 		return (ACompBean) session.get("acompBean");
 	}
 
-	public void ACompBean(ACompBean acompBean) {
+	public void setACompBean(ACompBean acompBean) {
 		this.session.put("acompBean", acompBean);
 	}
 	
