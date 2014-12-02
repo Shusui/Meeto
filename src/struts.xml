@@ -74,5 +74,9 @@
    			<result name="success" type="chain">load</result>
    		</action>
    		
+   		<action name="completed" class="login.action.ACompAction" method="execute">
+   			<result name="success" type="chain">load</result>
+   		</action>
+   		
    	</package>
 </struts>

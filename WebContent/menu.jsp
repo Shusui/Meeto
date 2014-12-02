@@ -216,7 +216,7 @@
 				<s:submit value="Schedule" onclick="form.action='schedule';"/>
 				<s:submit value="Remove" onclick="form.action='remove';"/>
 				<s:submit value="New Key"/>
-				<s:submit value="Action Done"/>
+				<s:submit value="Action Done" onclick="form.action='completed';"/>
 				<s:submit value="All Action"/>
 			</s:form>
 			<br>
