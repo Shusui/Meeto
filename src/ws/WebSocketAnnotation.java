@@ -3,6 +3,7 @@ package ws;
 import java.io.IOException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -57,7 +58,25 @@ public class WebSocketAnnotation {
         username = (String) httpSession.getAttribute("username");
         itemid = httpSession.getAttribute("item_id").toString();
         String message = username + ": connected.";
-        sendMessage(message);
+        //sendMessage(message);
+        String old = "";
+        ArrayList<String> m = null;
+        
+        if(!itemid.equals("-1")){
+	        try {
+				m = di.loadChat(itemid);
+			} catch (RemoteException e) {}
+	        
+	        if(m != null){
+	        	for(int i = 0; i < m.size(); i++)
+	        		old += "<p>" + m.get(i) + "</p>";
+	        }
+        }
+        
+        if(old.equals(""))
+        	sendMessage(message);
+        else
+        	sendMessage(old);
     }
 
     @OnClose
