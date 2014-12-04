@@ -25,9 +25,13 @@ public class LoadBean {
 	}
 
 	public ArrayList<Meeting> loadMeetings(){
+		System.out.println("LOAD MEETINGS BEAN");
+		
 		try {
-			return di.loadMeetings();
+			ArrayList<Meeting> tmp =  di.loadMeetings();
+			return tmp;
 		} catch (RemoteException e) {
+			System.out.println("REMOTE");
 			return null;
 		}
 	}

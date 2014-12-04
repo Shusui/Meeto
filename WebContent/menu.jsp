@@ -8,13 +8,78 @@
 <%@ page import="rmiserver.application.Item"%>
 <%@ page import="rmiserver.application.Key"%>
 <%@ page import="java.util.ArrayList"%>
-<%@ page import="login.model.LoadBean;"%>
+<%@ page import="login.model.LoadBean"%>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
 		<title>Meeto</title>
 		<link rel="stylesheet" type="text/css" href="styles.css">
+		
+		<script type="text/javascript">
+		
+	        var websocket = null;
+	
+	        window.onload = function() {
+	            connect('ws://' + window.location.host + '/Meetoj7/ws');
+	            document.getElementById("chat").focus();
+	        }
+	
+	        function connect(host) { // connect to the host websocket
+	            if ('WebSocket' in window)
+	                websocket = new WebSocket(host);
+	            else if ('MozWebSocket' in window)
+	                websocket = new MozWebSocket(host);
+	            else {
+	                writeToHistory('Get a real browser which supports WebSocket.');
+	                return;
+	            }
+	
+	            websocket.onopen    = onOpen; // set the event listeners below
+	            websocket.onclose   = onClose;
+	            websocket.onmessage = onMessage;
+	            websocket.onerror   = onError;
+	        }
+	
+	        function onOpen(event) {
+	            //writeToHistory('Connected to ' + window.location.host + '.');
+	            document.getElementById('chat').onkeydown = function(key) {
+	                if (key.keyCode == 13)
+	                    doSend(); // call doSend() on enter key
+	            };
+	        }
+	        
+	        function onClose(event) {
+	            writeToHistory('WebSocket closed.');
+	            document.getElementById('chat').onkeydown = null;
+	        }
+	        
+	        function onMessage(message) { // print the received message
+	            writeToHistory(message.data);
+	        }
+	        
+	        function onError(event) {
+	            writeToHistory('WebSocket error (' + event.data + ').');
+	            document.getElementById('chat').onkeydown = null;
+	        }
+	        
+	        function doSend() {
+	            var message = document.getElementById('chat').value;
+	            if (message != '')
+	                websocket.send(message); // send the message
+	            document.getElementById('chat').value = '';
+	        }
+	
+	        function writeToHistory(text) {
+	            var history = document.getElementById('history');
+	            var line = document.createElement('p');
+	            line.style.wordWrap = 'break-word';
+	            line.innerHTML = text;
+	            history.appendChild(line);
+	            history.scrollTop = history.scrollHeight;
+	        }
+			
+	    </script>
 	</head>
 	<body>	
 		<div id="wrapper">
@@ -66,7 +131,7 @@
 					}
 				%>
 				
-				<br><br>
+				<br>
 				<form id="asd" name="asd" action="menu.jsp" method="post">
 					<%
 						int ipos = 0;
@@ -94,9 +159,8 @@
 				    }
 				%>
 				
-				<br>
 				<%= "Item id=" + session.getAttribute("item_id")%>
-				<br><br>
+				<br>
 				
 				<% 
 					ArrayList<Key> ik = null;
@@ -147,8 +211,7 @@
 					</c:forEach>
 				</table>
 				
-				<br><br>
-				
+				<br>
 				Item keydecisions:
 				<table>
 					<c:forEach var="key" items="${session.keys}">
@@ -160,7 +223,7 @@
 					</c:forEach>
 				</table>
 							
-				<br><br>
+				<br>
 				Personal TODO-List:
 				<table>
 					<c:forEach var="action" items="${session.actions}">
@@ -171,6 +234,15 @@
 						</tr>
 					</c:forEach>
 				</table>
+				
+				<noscript></noscript>
+				<div>
+				    <div id="contentor">
+				    	<div id="history">
+				    	</div>
+				    </div>
+				    <p><input type="text" placeholder="type to chat" id="chat"></p>
+				</div>
 			</div>
 		
 			<div id="box">
