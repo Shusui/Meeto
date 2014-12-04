@@ -97,8 +97,8 @@ public class WebSocketAnnotation {
 		System.out.println("Message: " + reversedMessage);
 		
 		String[] temp = reversedMessage.split("\\s+");
-		System.out.println("Temp[0]: " + temp[0] + "\n" + "Temp[1]: " + temp[1] + "\n" + "Temp[2]: " + temp[2]);
-		if(temp[0].equals("alert")){
+		//System.out.println("Temp[0]: " + temp[0] + "\n" + "Temp[1]: " + temp[1] + "\n" + "Temp[2]: " + temp[2]);
+		if(temp[0] != null && temp[0].equals("alert")){
 			toMessage(reversedMessage, temp[1]);
 			return;
 		}

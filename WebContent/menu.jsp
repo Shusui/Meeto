@@ -73,13 +73,15 @@
 	        
 	        function onMessage(message) { // print the received message
 	        	var splited = (message.data).split(" ");
-	        	if(splited[0] === "alert")
+	        	if(splited[0] === "alert"){
 	        		if(splited[2] === "meeting")
 	            		alert('You were invited to a meeting');
 	        		else if(splited[2] === "action")
 	        			alert('You have been assigned a task');
-	        	else
+	        	}
+	        	else{
 	        		writeToHistory(message.data);
+	        	}
 	        }
 	        
 	        function onError(event) {
