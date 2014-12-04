@@ -23,12 +23,17 @@ import rmiserver.DatabaseInterface;
 public class WebSocketAnnotation {
     private static final AtomicInteger sequence = new AtomicInteger(1);
     private String username;
+    private String itemid;
     private Session session;
     private HttpSession httpSession;
     
     private DatabaseInterface di;
     private static final Set<WebSocketAnnotation> users =
             new CopyOnWriteArraySet<>();
+    
+    public String getItemId(){
+    	return itemid;
+    }
 
     public WebSocketAnnotation() {
         username = "User" + sequence.getAndIncrement();
@@ -50,6 +55,7 @@ public class WebSocketAnnotation {
         
         users.add(this);
         username = (String) httpSession.getAttribute("username");
+        itemid = httpSession.getAttribute("item_id").toString();
         String message = username + ": connected.";
         sendMessage(message);
     }
@@ -88,18 +94,20 @@ public class WebSocketAnnotation {
     private void sendMessage(String text) {
     	// uses *this* object's session to call sendText()
     	for(WebSocketAnnotation client : users){
-	    	try {
-				//this.session.getBasicRemote().sendText(text);
-	    		client.session.getBasicRemote().sendText(text);
-	    	} catch (IOException e) {
-				// clean up once the WebSocket connection is closed
-				try {
-					//this.session.close();
-					client.session.close();
-				} catch (IOException e1) {
-					e1.printStackTrace();
+    		if(client.getItemId().equals(this.getItemId())){
+		    	try {
+					//this.session.getBasicRemote().sendText(text);
+		    		client.session.getBasicRemote().sendText(text);
+		    	} catch (IOException e) {
+					// clean up once the WebSocket connection is closed
+					try {
+						//this.session.close();
+						client.session.close();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
 				}
-			}
+    		}
     	}
     }
 }

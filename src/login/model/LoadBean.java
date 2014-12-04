@@ -67,4 +67,17 @@ public class LoadBean {
 			return null;
 		}
 	}
+	
+	public String loadChat(String iditem){
+		try{
+			ArrayList<String> a = di.loadChat(iditem);
+			String tmp= "";
+			for(int i = 0; i < a.size(); i++)
+				tmp += a.get(i);
+			
+			return tmp;
+		} catch (RemoteException e) {
+			return null;
+		}
+	}
 }

@@ -43,6 +43,7 @@
 	
 	        function onOpen(event) {
 	            //writeToHistory('Connected to ' + window.location.host + '.');
+	            
 	            document.getElementById('chat').onkeydown = function(key) {
 	                if (key.keyCode == 13)
 	                    doSend(); // call doSend() on enter key
@@ -153,9 +154,13 @@
 				</form>
 				
 				<%
+					String chat_messages = "";
 					String value_ = request.getParameter("item");
 					if(value_ != null){	
 				    	session.setAttribute("item_id", value_);
+				    	LoadBean tmpasd = (LoadBean) session.getAttribute("loadBean");
+				    	chat_messages = tmpasd.loadChat(value_);
+				    	session.setAttribute("chat_messages", chat_messages);
 				    }
 				%>
 				
