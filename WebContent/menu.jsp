@@ -50,13 +50,36 @@
 	            };
 	        }
 	        
+	        function debugi(){
+	        	console.log(document.getElementById('usermeet').value);
+	        	sendNotify(document.getElementById('usermeet').value, ' meeting junk');
+	        }
+	        
+	        function debugu(){
+	        	console.log(document.getElementById('useraction').value);
+	        	sendNotify(document.getElementById('useraction').value, ' action junk');
+	        }
+	        
+	        function sendNotify(text, topic) {
+	            var message = "alert " + text + topic;
+	            websocket.send(message);
+	        }
+	        
+	        
 	        function onClose(event) {
 	            writeToHistory('WebSocket closed.');
 	            document.getElementById('chat').onkeydown = null;
 	        }
 	        
 	        function onMessage(message) { // print the received message
-	            writeToHistory(message.data);
+	        	var splited = (message.data).split(" ");
+	        	if(splited[0] === "alert")
+	        		if(splited[2] === "meeting")
+	            		alert('You were invited to a meeting');
+	        		else if(splited[2] === "action")
+	        			alert('You have been assigned a task');
+	        	else
+	        		writeToHistory(message.data);
 	        }
 	        
 	        function onError(event) {
@@ -298,8 +321,8 @@
 			</s:form>
 			<br>
 			<s:form method="post">
-				<s:textfield name="username" placeholder = "Type a username"/>
-				<s:submit value = "Add User" onclick="form.action='add_user';"/>
+				<s:textfield id="usermeet" name="username" placeholder = "Type a username"/>
+				<s:submit id="meetinvite" value = "Add User" onclick="form.action='add_user';debugi();"/>
 				<s:submit value = "Remove User" onclick="form.action='del_user';"/>
 				<s:submit value = "Decline Meeting" onclick="form.action='decline';"/>
 			</s:form>
@@ -327,8 +350,8 @@
 			<br>
 			<s:form method="post">
 				<s:textfield name="description" placeholder = "Type a description"/>
-				<s:textfield name="username" placeholder = "Type a username"/>
-				<s:submit value="Assign Task" onclick="form.action='assign';"/>
+				<s:textfield id="useraction" name="username" placeholder = "Type a username"/>
+				<s:submit value="Assign Task" onclick="form.action='assign';debugu();"/>
 			</s:form>
 		</div>
 	</body>

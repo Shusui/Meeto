@@ -35,6 +35,10 @@ public class WebSocketAnnotation {
     public String getItemId(){
     	return itemid;
     }
+    
+    public String getUsername(){
+    	return username;
+    }
 
     public WebSocketAnnotation() {
         username = "User" + sequence.getAndIncrement();
@@ -58,7 +62,6 @@ public class WebSocketAnnotation {
         username = (String) httpSession.getAttribute("username");
         itemid = httpSession.getAttribute("item_id").toString();
         String message = username + ": connected.";
-        //sendMessage(message);
         String old = "";
         ArrayList<String> m = null;
         
@@ -76,7 +79,7 @@ public class WebSocketAnnotation {
         if(old.equals(""))
         	sendMessage(message);
         else
-        	sendMessage(old);
+        	selfMessage(old);
     }
 
     @OnClose
@@ -90,6 +93,16 @@ public class WebSocketAnnotation {
 		String itemid = httpSession.getAttribute("item_id").toString();
 		System.out.println(itemid);
 		
+		String reversedMessage = new StringBuffer(message).toString();
+		System.out.println("Message: " + reversedMessage);
+		
+		String[] temp = reversedMessage.split("\\s+");
+		System.out.println("Temp[0]: " + temp[0] + "\n" + "Temp[1]: " + temp[1] + "\n" + "Temp[2]: " + temp[2]);
+		if(temp[0].equals("alert")){
+			toMessage(reversedMessage, temp[1]);
+			return;
+		}
+		
 		if(!itemid.equals("-1")){
 	    	try {
 				di.addComment(username, itemid, message);
@@ -101,7 +114,6 @@ public class WebSocketAnnotation {
     	
     	// one should never trust the client, and sensitive HTML
         // characters should be replaced with &lt; &gt; &quot; &amp;
-    	String reversedMessage = new StringBuffer(message).toString();
     	sendMessage(username + ": " + reversedMessage);
     }
     
@@ -109,11 +121,45 @@ public class WebSocketAnnotation {
     public void handleError(Throwable t) {
     	t.printStackTrace();
     }
+    
+    private void toMessage(String text, String to){
+    	for(WebSocketAnnotation client : users){
+    		if(client.getUsername().equals(to)){
+		    	try {
+					//this.session.getBasicRemote().sendText(text);
+		    		client.session.getBasicRemote().sendText(text);
+		    	} catch (IOException e) {
+					// clean up once the WebSocket connection is closed
+					try {
+						//this.session.close();
+						client.session.close();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+				}
+    		}
+    	}
+    }
+    
+    private void selfMessage(String text){
+    	try {
+			//this.session.getBasicRemote().sendText(text);
+    		this.session.getBasicRemote().sendText(text);
+    	} catch (IOException e) {
+			// clean up once the WebSocket connection is closed
+			try {
+				//this.session.close();
+				this.session.close();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+    }
 
     private void sendMessage(String text) {
     	// uses *this* object's session to call sendText()
     	for(WebSocketAnnotation client : users){
-    		if(client.getItemId().equals(this.getItemId())){
+    		if(!this.getItemId().equals("-1") && client.getItemId().equals(this.getItemId())){
 		    	try {
 					//this.session.getBasicRemote().sendText(text);
 		    		client.session.getBasicRemote().sendText(text);
