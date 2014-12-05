@@ -20,6 +20,7 @@
 	        var websocket = null;
 	
 	        window.onload = function() {
+	        	console.log(window.location.host);
 	            connect('ws://' + window.location.host + '/Meetoj7/ws');
 	            document.getElementById("chat").focus();
 	        }
