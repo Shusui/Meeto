@@ -29,6 +29,7 @@ public class InitAction extends ActionSupport implements SessionAware {
 		session.put("items", null);
 		session.put("action_id", -1);
 		session.put("chat_messages", "");
+		session.put("keys", null);
 
 		return SUCCESS;
 	}

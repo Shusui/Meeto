@@ -1,5 +1,6 @@
 html {
 	font-family: "Ubuntu";
+	background-color: #17bb86;
 }
 
 #login {
@@ -38,6 +39,7 @@ p {
 	/*color: red;*/
 	color: black;
 	font-weight: bold;
+	/*height: 10%;*/
 }
 
 #acc {
@@ -49,6 +51,8 @@ p {
 #wrapper {
 	overflow: hidden;
 	clear: both;
+	border: 5px solid black;
+	margin-bottom: 10px;
 }
 
 #lol {
@@ -56,43 +60,120 @@ p {
 }
 
 #box {
-	width: 80%;
-	height: 575px;
-	background-color: red;
+	width: 70%;
+	/*height: 575px;*/
+	/*background-color: red;*/
 	float: left;
+	margin-bottom: 15px;
+}
+
+#box-aux {
+	padding-left: 10px;
+	padding-top: 10px;
 }
 
 #meet-info {
-	width: 20%;
-	height: 575px;
-	background-color: blue;
+	width: 30%;
+	/*height: 575px;*/
+	/*background-color: blue;*/
 	float: right;
 }
 
+#meet-info-aux {
+	padding-left: 10px;
+	padding-top: 10px;
+	text-align: center;
+}
+
+#meet-info-aux > hr {
+	border: none;
+	height: 2px;
+	color: black;
+	width: 85%;
+	color: black;
+	background-color: black;
+	border-color: black;
+}
+
 #buttons {
-	width: 100%;
-	height: 25px;
-	background-color: green;
-	clear: both;
-	display: table;
+	width: 60%;
+	/*background-color: green;*/
+	/*clear: both;*/
+	/*display: table;*/
 	visibility: visible;
+	float: left;
+	fixed:bottom;
+	line-height: 30%;
+	margin-bottom: 10px; 
+}
+
+#buttons > hr {
+	width: 85%;
+	color: black;
+	background-color: black;
+	border-color: black;
+	height: 3px;
+	border: none;
+}
+
+#aux_buttons {
+	padding-left: 10px;
 }
 
 input#chat {
-	width: 250px;
+	width: 300px;
 	border: 1px solid #AACAAC;
+	margin-top: 2px;
+	margin-bottom: 10px;
 }
 
 #contentor {
 	background-color: white;
-	width: 250px;
+	width: 300px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 #history {
-	height: 150px;
+	height: 250px;
 	border: 1px solid #AACAAC;
 	font-family: Courier, monospace;
 	font-size: .9em;
 	overflow-y: scroll;
 	width: 100%;
+	text-align: left;
+}
+
+.tftable {
+	font-size: 12px;
+	color: white;
+	width: 90%;
+	border-width: 1px;
+	border-color: #1f1f1f;
+	border-collapse: collapse;
+	border: 1px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.tftable th {
+	font-size:12px;
+	background-color: #1f1f1f;
+	padding: 8px;
+	border-style: solid;
+	border-color: #1f1f1f;
+	text-align: center;
+}
+
+.tftable tr {
+	background-color: #FFFFFF;
+}
+
+.tftable td {
+	color: black;
+	font-size:12px;
+	border-width: 2px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #1f1f1f;
 }

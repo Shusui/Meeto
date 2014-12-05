@@ -10,14 +10,18 @@ import rmiserver.application.Item;
 import rmiserver.application.Meeting;
 import rmiserver.application.User;
 import rmiserver.application.Key;
+import config.Config;
 
 public class LoadBean {
 	private DatabaseInterface di;
 
 	public LoadBean() {
 		try {
-			String address = "rmi://localhost:1099/database";
-			di = (DatabaseInterface) Naming.lookup(address);	
+			String address1 = "localhost";
+			String address2 = "10.42.0.1";
+			
+			String address = "rmi://" + address2 + ":1099/database";
+			di = (DatabaseInterface) Naming.lookup(address);
 		}
 		catch(Exception e){
 			e.printStackTrace();
