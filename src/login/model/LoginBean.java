@@ -12,8 +12,8 @@ public class LoginBean {
 
 	public LoginBean() {
 		try {
-			String address1 = "localhost";
-			String address2 = "10.42.0.1";
+			String address2 = "localhost";
+			String address1 = "10.42.0.1";
 			
 			String address = "rmi://" + address2 + ":1099/database";
 			di = (DatabaseInterface) Naming.lookup(address);

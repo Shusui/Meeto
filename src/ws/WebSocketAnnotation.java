@@ -44,7 +44,10 @@ public class WebSocketAnnotation {
         username = "User" + sequence.getAndIncrement();
         
         try {
-			String address = "rmi://10.42.0.1:1099/database";
+        	String address2 = "localhost";
+			String address1 = "10.42.0.1";
+			
+			String address = "rmi://" + address2 + ":1099/database";
 			di = (DatabaseInterface) Naming.lookup(address);	
 		}
 		catch(Exception e){
